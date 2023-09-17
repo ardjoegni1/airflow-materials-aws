@@ -105,6 +105,10 @@ Resources:
               runtime-versions:
                 docker: 18
               commands:
+                - rm -f /etc/apt/sources.list.d/sbt.list
+                - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg > pubkey.gpg
+                - apt-key add pubkey.gpg
+                - rm -rf pubkey.gpg
                 - apt-get -y update
                 - apt-get -y install jq
             pre_build:
@@ -155,7 +159,7 @@ Resources:
       RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/AirflowCodePipelineServiceRole
       ArtifactStore:
         Type: S3
-        Location: !Sub airflow-staging-codepipeline-artifacts
+        Location: !Sub airflow-staging-codepipeline-artifacts-ecr-s3
       Stages:
         - Name: Source
           Actions:

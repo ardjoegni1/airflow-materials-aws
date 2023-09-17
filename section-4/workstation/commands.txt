@@ -107,6 +107,12 @@ kubectl get pods --all-namespaces
 
 curl -s https://fluxcd.io/install.sh | sudo bash
 
+--------------------------------------
+#go to github setting--->developer setting and create a token and in the terminal
+export GITHUB_TOKEN=value  # put the value here before running the below command
+#to verify do
+echo $GITHUB_TOKEN
+-----------------------------------
 flux bootstrap github \
   --owner=ardjoegni1 \
   --repository=airflow-eks-config-admin \

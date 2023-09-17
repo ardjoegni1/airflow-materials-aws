@@ -7,8 +7,8 @@ aws iam delete-role-policy --role-name AirflowCodeBuildServiceRole --policy-name
 aws iam delete-role --role-name AirflowCodeBuildServiceRole
 
 # CHANGE THE NAME OF THE BUCKET WITH YOURS
-aws s3 rb s3://airflow-dev-codepipeline-artifacts --force
-aws s3 rb s3://airflow-staging-codepipeline-artifacts --force
+aws s3 rb s3://airflow-dev-codepipeline-artifacts-ecr --force
+aws s3 rb s3://airflow-staging-codepipeline-artifacts-ecr --force
 
 # Helm Charts
 helm delete --namespace dev airflow-dev

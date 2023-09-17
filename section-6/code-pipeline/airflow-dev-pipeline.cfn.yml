@@ -8,14 +8,14 @@ Parameters:
   GitSourceRepo:
     Type: String
     Description: GitHub source repository - must contain a Dockerfile in the base
-    Default: airflow-eks-docker
+    Default: eks-example
     MinLength: 1
     MaxLength: 100
     ConstraintDescription: You must enter a GitHub repository name
 
   GitBranch:
     Type: String
-    Default: dev
+    Default: master
     Description: GitHub git repository branch - change triggers a new build
     MinLength: 1
     MaxLength: 100
@@ -78,6 +78,10 @@ Resources:
               runtime-versions:
                 docker: 18
               commands:
+                - rm -f /etc/apt/sources.list.d/sbt.list
+                - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg > pubkey.gpg
+                - apt-key add pubkey.gpg
+                - rm -rf pubkey.gpg
                 - apt-get -y update
                 - apt-get -y install jq
             pre_build:
@@ -93,6 +97,7 @@ Resources:
                 - echo Build started on `date`
                 - docker build -t "${REPOSITORY_URI}:latest" .
                 - docker tag "${REPOSITORY_URI}:latest" "${REPOSITORY_URI}:${TAG}"
+                - docker run --rm "${REPOSITORY_URI}:latest" python -c "airflow db init && pytest unittests"
             post_build:
               commands:
                 - echo Build completed on `date`
@@ -119,7 +124,7 @@ Resources:
       RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/AirflowCodePipelineServiceRole
       ArtifactStore:
         Type: S3
-        Location: !Sub airflow-dev-codepipeline-artifacts-ecr
+        Location: !Sub airflow-dev-codepipeline-artifacts-ecr-s3
       Stages:
         - Name: Source
           Actions:
