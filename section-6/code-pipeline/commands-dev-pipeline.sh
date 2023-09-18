@@ -11,4 +11,4 @@ aws iam put-role-policy --role-name AirflowCodeBuildServiceRole --policy-name co
 vim airflow-materials-aws/code-pipeline/airflow-dev-pipeline.cfn.yml
 
 # Create the AWS CodePipeline using CloudFormation (This doesn't deploy the image as Flux handles it)
-aws cloudformation create-stack --stack-name=airflow-dev-pipeline --template-body=file://airflow-materials-aws/section-6/code-pipeline/airflow-dev-pipeline.cfn.yml --parameters ParameterKey=GitHubUser,ParameterValue=ardjoegni1 ParameterKey=GitHubToken,ParameterValue=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 ParameterKey=GitSourceRepo,ParameterValue=airflow-eks-docker ParameterKey=GitBranch,ParameterValue=dev
+aws cloudformation create-stack --stack-name=airflow-dev-pipeline --template-body=file://airflow-materials-aws/section-6/code-pipeline/airflow-dev-pipeline.cfn.yml --parameters ParameterKey=GitHubUser,ParameterValue=ardjoegni1 ParameterKey=GitHubToken,ParameterValue=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 ParameterKey=GitSourceRepo,ParameterValue=airflow-eks-docker ParameterKey=GitBranch,ParameterValue=dev
