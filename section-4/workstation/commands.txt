@@ -78,7 +78,7 @@ ssh-keygen -t rsa
 cd airflow-materials-aws
 
 # Install the key
-aws ec2 import-key-pair --key-name "airflow-workstation-admin" --public-key-material fileb:///home/ec2-user/.ssh/id_rsa.pub
+aws ec2 import-key-pair --key-name "airflow-workstation" --public-key-material fileb:///home/ec2-user/.ssh/id_rsa.pub
 
 # Install aws-iam-authenticator
 # Othwerise, doesn't look for the token and kubectl can't connect
@@ -115,14 +115,14 @@ echo $GITHUB_TOKEN
 -----------------------------------
 flux bootstrap github \
   --owner=ardjoegni1 \
-  --repository=airflow-eks-config-admin \
+  --repository=airflow-config-eks \
   --branch=main \
   --interval=15s \
   --personal
 
-mkdir airflow-eks-config-admin/{workloads,releases,namespaces}
-find airflow-eks-config-admin/ -type d -exec touch {}/.keep \;
-cd airflow-eks-config-admin
+mkdir airflow-config-eks/{workloads,releases,namespaces}
+find airflow-config-eks/ -type d -exec touch {}/.keep \;
+cd airflow-config-eks
 git add .
 git commit -am "directory structure"
 git push
