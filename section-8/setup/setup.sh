@@ -4,7 +4,7 @@ MATERIALS=airflow-materials-aws
 
 # SET YOUR values
 GIT_USERNAME=ardjoegni1
-GIT_TOKEN=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
+GIT_TOKEN=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
 S3_BUCKET_NAME_DEV=airflow-dev-codepipeline-artifacts-ecr-s3
 S3_BUCKET_NAME_STAGING=airflow-staging-codepipeline-artifacts-ecr-s3
 
