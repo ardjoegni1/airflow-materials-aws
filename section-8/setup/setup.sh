@@ -3,10 +3,10 @@
 MATERIALS=airflow-materials-aws
 
 # SET YOUR values
-GIT_USERNAME=marclamberti
-GIT_TOKEN=cb53803446b0968e132e2e8ff729c7596fb0d7c8
-S3_BUCKET_NAME_DEV=airflow-dev-codepipeline-artifacts
-S3_BUCKET_NAME_STAGING=airflow-staging-codepipeline-artifacts
+GIT_USERNAME=ardjoegni1
+GIT_TOKEN=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
+S3_BUCKET_NAME_DEV=airflow-dev-codepipeline-artifacts-ecr-s3
+S3_BUCKET_NAME_STAGING=airflow-staging-codepipeline-artifacts-ecr-s3
 
 # ----------------------------- Start the EKS Cluster
 eksctl create cluster -f $MATERIALS/cluster.yml
