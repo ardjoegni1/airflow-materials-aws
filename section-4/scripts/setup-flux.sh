@@ -15,7 +15,7 @@ kubectl create namespace flux
 helm repo add fluxcd https://charts.fluxcd.io
 
 helm upgrade -i flux fluxcd/flux \
---set git.url=git@github.com:$GIT_USERNAME/airflow-eks-config-admin \
+--set git.url=git@github.com:$GIT_USERNAME/airflow-eks-config \
 --namespace flux
 
 helm upgrade -i helm-operator fluxcd/helm-operator --wait \
